@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>To5 | Miami</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<section>
+		<div class="circle"></div>
+		<header>
+			<a href="#" class="logo"><img width= 100px height= 100px src="./src/Logo.png?raw=true"></a>
+			<div class="toggle" onclick="toggleMenu()"></div>
+			<ul class="navigation">
+				<div id="marker"></div>
+				<li><a href="./index.html">Home</a></li>
+				<li><a href="./menu.html">Menu</a></li>
+				<li><a href="./Order.html">Order Now</a></li>
+				<li><a href="./contact.html">Contact</a></li>
+			</ul>
+		</header>
+		<div class="content">
+			<div class="textBox">
+				<h1>It is not just Boba<br>It's <span>T05 Boba !</span></h1>
+				<h2 id="circle02">It is not just Boba<br>It's <span>T05 Boba !</span></h2>
+				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+				<a href="#" id="info" onmouseover="addText()" onmouseleave="removeText()">Learn More</a>
+			</div>
+			<div class="imgBox">
+				<img src="./src/boba2.png" class="starbucks" onmouseover="blurEffect()" onmouseleave="unblurEffect()">
+				<div class="contentBox">
+					<h2 id="contentBox-title" style="--i:1">A New product</h2>
+					<p id="contentBox-text" style="--i:2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>	
+				</div>
+			</div>
+		</div>
+		<ul class="thumb">
+			<li><img src="./src/boba2.png" onclick="imgSlider('0'); changeCircleColor('#017143'); changetext('0')"></li>
+			<li><img src="./src/brown.png" onclick="imgSlider('1'); changeCircleColor('#eb7495'); changetext('1')"></li>
+			<li><img src="./src/green.png" onclick="imgSlider('2'); changeCircleColor('#d752b1'); changetext('2')"></li>
+			<li><img src="./src/purple.png" onclick="imgSlider('0'); changeCircleColor('#017143'); changetext('3')"></li>
+			<li><img src="./src/strawberry.png" onclick="imgSlider('1'); changeCircleColor('#eb7495'); changetext('4')"></li>
+			<li><img src="./src/yellow.png" onclick="imgSlider('2'); changeCircleColor('#d752b1'); changetext('5')"></li>
+		</ul>
+		<ul class="sci">
+			<li><a href="#"><i class="fa fa-facebook-f"></i></a></li>
+			<li><a href="https://instagram.com/to5.miami"><i class="fa fa-instagram -f"></i></a></li>
+			<li><a href="#"><i class="fa fa-twitter -f"></i></a></li>
+		</ul>
+
+		<div id ="circularMenu1" class="circular-menu" onclick="menuEffect()">
+			<a href="#" class="floating-btn"><i class="fa fa-bars"></i></a>
+			<div class="items-wrapper">
+				<a href="#" class="menu-item"><i class="fa fa-coffee -f"></i></a>
+				<a href="#" class="menu-item"><i class="fa-thin fa-blender"></i></a>
+				<a href="#" class="menu-item"><i class="fa fa-blender"></i></i></a>
+				<a href="#" class="menu-item"><i class="fa fa-blender"></i></a>
+			</div>
+			
+		</div>
+	</section>
+
+	<script type="text/javascript">
+		var products = [ 
+			{
+				"name": "Menthol Smoothie",
+				"image": "./src/boba2.png",
+				"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"
+			},
+			{
+				"name": " Passion Smoothie",
+				"image": "./src/brown.png",
+				"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"
+			},
+			{
+				"name": " Strawberry Smoothie",
+				"image": "./src/green.png",
+				"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"
+			},
+			
+
+		];
+	
+		text = document.querySelector('.textBox'); 
+		sci = document.querySelector('.sci');
+		thumb = document.querySelector('.thumb'); 
+		var info = document.getElementById('info');
+		var marker = document.querySelector('#marker');
+	    var item = document.querySelectorAll('.navigation li a')
+
+		function imgSlider(anything) {
+			document.querySelector('.starbucks').src = products[anything].image;
+		}
+		function changeCircleColor(color){
+			const circle = document.querySelector('.circle');
+			const circle2 = document.getElementById('circle02');
+			circle.style.background = color;
+			circle2.style.background = color;
+			info.style.background = color;
+		}
+		function blurEffect(){ 
+			text.style.filter = "blur(10px)";
+			sci.style.filter = "blur(10px)";
+			thumb.style.filter = "blur(10px)";
+		}
+		function changetext(i){
+			const producttitle = document.getElementById('contentBox-title');
+			const contenttext = document.getElementById('contentBox-text');
+			producttitle.innerText = products[i].name;
+			contenttext.innerText = products[i].description;
+		}
+		function unblurEffect(){
+			text.style.removeProperty('filter');
+			sci.style.removeProperty('filter');
+			thumb.style.removeProperty('filter');
+		}
+		function addText(){
+			setTimeout(function(){
+				info.innerText = 'Learn More about our products';
+			}, 500);
+		}
+		function removeText(){
+			info.innerText ='Learn More';
+		}
+		function menuEffect(){
+			document.getElementById('circularMenu1').classList.toggle('active')
+		}
+		function indicator(e) {
+	    	marker.style.left = e.offsetLeft+"px";
+	    	marker.style.width = e.offsetWidth+"px";
+	    }
+	    item.forEach(link => {
+	    	link.addEventListener('click', (e) => {
+	    		indicator(e.target);
+	    	})
+	    })
+	    function toggleMenu(){
+	      var menutoggle = document.querySelector('.toggle');
+	      var menu = document.querySelector('.navigation');
+	      menutoggle.classList.toggle('active');
+	      menu.classList.toggle('active') 
+	    }	 
+	</script>
